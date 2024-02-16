@@ -6,7 +6,8 @@
   "mixins": [
   ],
   "client": [
-    "ExampleMixin"
+    "FireOverlayMixin",
+    "ShieldOverlayMixin"
   ],
   "injectors": {
     "defaultRequire": 1

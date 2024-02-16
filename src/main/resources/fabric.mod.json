@@ -1,32 +1,32 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "vision",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Vision",
+  "description": "This mod allows you to adjust the height of the shield or fire",
   "authors": [
-    "Me!"
+    "SleepyPxnda"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/SleepyPxnda/vision"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/vision/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
       {
         "adapter": "kotlin",
-        "value": "net.fabricmc.example.ExampleMod"
+        "value": "net.fabricmc.example.VisionMod"
       }
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "vision.mixins.json"
   ],
 
   "depends": {
