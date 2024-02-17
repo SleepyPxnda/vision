@@ -14,10 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ClientWorld.Properties.class)
 public abstract class DayTimeMixin {
-
-    @Shadow private long timeOfDay;
-    private static Logger LOG = LoggerFactory.getLogger(DayTimeMixin.class);
-
     private static long setTimeOfDay = 6000L;
     private static boolean enableTime = false;
 
