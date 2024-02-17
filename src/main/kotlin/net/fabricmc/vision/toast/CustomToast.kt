@@ -5,10 +5,11 @@ import net.minecraft.client.toast.Toast
 import net.minecraft.client.toast.ToastManager
 import net.minecraft.util.Colors
 
-class CustomToast(title: String, description: String) : Toast {
+class CustomToast(title: String, description: String, context: String?) : Toast {
 
     val title: String = title;
     val description: String = description;
+    val context: String? = context;
     val displayDuration: Double = 5.0;
     val startTime: Long = System.currentTimeMillis();
 
