@@ -6,9 +6,10 @@
   "mixins": [
   ],
   "client": [
-    "WeatherMixin",
+    "DayTimeMixin",
     "FireOverlayMixin",
-    "ShieldOverlayMixin"
+    "ShieldOverlayMixin",
+    "WeatherMixin"
   ],
   "injectors": {
     "defaultRequire": 1
