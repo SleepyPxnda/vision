@@ -11,11 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ClientPlayNetworkHandler.class)
 public abstract class LightningMixin {
 
-    private static boolean disableWeather = true;
+    private static boolean disableLighning = false;
 
     @Inject(method = "onEntitySpawn", at = @At("HEAD"), cancellable = true)
     private void noweathereffects$cancelLightningSpawn(EntitySpawnS2CPacket packet, CallbackInfo ci) {
-        if (disableWeather && packet.getEntityType() == EntityType.LIGHTNING_BOLT) {
+        if (disableLighning && packet.getEntityType() == EntityType.LIGHTNING_BOLT) {
             ci.cancel();
         }
     }

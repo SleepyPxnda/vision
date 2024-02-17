@@ -8,6 +8,8 @@ import net.minecraft.util.profiler.Profiler;
 import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.Mixin;
 
 import java.util.function.Supplier;
@@ -15,7 +17,10 @@ import java.util.function.Supplier;
 @Mixin(ClientWorld.class)
 public abstract class WeatherMixin extends World {
 
-    private static boolean disableWeather = true;
+    private static Logger LOGGER = LoggerFactory.getLogger(WeatherMixin.class);
+
+    // This is the state of the weather. 1 is clear, 2 is raining, else is disabled.
+    private static String weatherState = "1";
 
     private WeatherMixin(MutableWorldProperties properties,
                          RegistryKey<World> registryRef,
@@ -31,11 +36,19 @@ public abstract class WeatherMixin extends World {
 
     @Override
     public float getRainGradient(float delta) {
-        return disableWeather ? 0 : super.getRainGradient(delta);
+        return switch (weatherState){
+            case "1" -> 0;
+            case "2" -> 1;
+            default -> super.getRainGradient(delta);
+        };
     }
 
     @Override
     public float getThunderGradient(float delta) {
-        return disableWeather ? 0 : super.getThunderGradient(delta);
+        return switch (weatherState){
+            case "1" -> 0;
+            case "2" -> 1;
+            default -> super.getThunderGradient(delta);
+        };
     }
 }
