@@ -17,9 +17,8 @@ import java.util.function.Supplier;
 @Mixin(ClientWorld.class)
 public abstract class WeatherMixin extends World {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(WeatherMixin.class);
 
-    // This is the state of the weather. 1 is clear, 2 is raining, else is disabled.
+    // This is the state of the weather. 1 is clear, 2 is raining, 3 is thundering else is disabled.
     private static String weatherState = "1";
 
     private WeatherMixin(MutableWorldProperties properties,
@@ -38,17 +37,13 @@ public abstract class WeatherMixin extends World {
     public float getRainGradient(float delta) {
         return switch (weatherState){
             case "1" -> 0;
-            case "2" -> 1;
+            case "2","3" -> 1;
             default -> super.getRainGradient(delta);
         };
     }
 
     @Override
     public float getThunderGradient(float delta) {
-        return switch (weatherState){
-            case "1" -> 0;
-            case "2" -> 1;
-            default -> super.getThunderGradient(delta);
-        };
+        return weatherState.equals("3") ? 1f : super.getThunderGradient(delta);
     }
 }
