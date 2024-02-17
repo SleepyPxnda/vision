@@ -1,4 +1,4 @@
-package net.fabricmc.example.mixin;
+package net.fabricmc.vision.mixin;
 
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.registry.DynamicRegistryManager;
@@ -8,8 +8,6 @@ import net.minecraft.util.profiler.Profiler;
 import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.Mixin;
 
 import java.util.function.Supplier;

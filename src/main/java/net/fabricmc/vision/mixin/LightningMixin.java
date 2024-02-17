@@ -1,4 +1,4 @@
-package net.fabricmc.example.mixin;
+package net.fabricmc.vision.mixin;
 
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.entity.EntityType;

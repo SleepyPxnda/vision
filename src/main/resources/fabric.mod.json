@@ -21,7 +21,13 @@
     "main": [
       {
         "adapter": "kotlin",
-        "value": "net.fabricmc.example.VisionMod"
+        "value": "net.fabricmc.vision.VisionMod"
+      }
+    ],
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "net.fabricmc.vision.VisionModClient"
       }
     ]
   },
