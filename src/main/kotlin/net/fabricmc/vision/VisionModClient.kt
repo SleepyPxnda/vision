@@ -2,14 +2,11 @@ package net.fabricmc.vision
 
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.vision.toast.ToastManager
+import net.fabricmc.vision.toast.ToastType
+import net.minecraft.client.MinecraftClient
 import java.util.*
 
 class VisionModClient: ClientModInitializer {
-
-    companion object {
-        //Retrieve global reference of client
-        var toastManager = ToastManager();
-    }
 
     override fun onInitializeClient() {
         //Initialize client
@@ -17,8 +14,13 @@ class VisionModClient: ClientModInitializer {
         Timer().schedule(object: TimerTask() {
             override fun run() {
                 println("Showing Toast")
-                toastManager.createSystemToast("Test", "Test Description");
+                ToastManager()
+                    .title("test")
+                    .description("test description")
+                    .duration(5.0)
+                    .type(ToastType.INFO)
+                    .queue();
             }
-        }, 20000L);
+        }, 15000L);
     }
 }
