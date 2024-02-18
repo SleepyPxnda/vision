@@ -2,18 +2,19 @@ package net.fabricmc.vision.toast
 
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.toast.SystemToast.Type
+import net.minecraft.text.Text
 import net.minecraft.util.Identifier
 
 class ToastManager {
 
-    var visionToast: VisionToast = VisionToast("","");
+    var visionToast: VisionToast = VisionToast(Text.of(""),Text.of(""));
 
-    fun title(title: String): ToastManager {
+    fun title(title: Text): ToastManager {
         visionToast.title = title;
         return this;
     }
 
-    fun description(description: String): ToastManager {
+    fun description(description: Text): ToastManager {
         visionToast.description = description;
         return this;
     }
