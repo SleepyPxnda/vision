@@ -9,10 +9,6 @@ class ToastManager {
     val client: MinecraftClient = MinecraftClient.getInstance();
 
     fun createSystemToast(title: String, message: String){
-        CustomToast(title, message, null).queue(client.toastManager);
-    }
-
-    fun createContextToast(title: String, message: String, context: String){
-        CustomToast(title, message, context).queue(client.toastManager);
+        CustomToast(title, message).queue(client.toastManager);
     }
 }

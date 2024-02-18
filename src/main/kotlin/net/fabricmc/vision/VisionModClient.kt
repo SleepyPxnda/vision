@@ -17,8 +17,7 @@ class VisionModClient: ClientModInitializer {
         Timer().schedule(object: TimerTask() {
             override fun run() {
                 println("Showing Toast")
-                toastManager.createSystemToast("Test");
-                toastManager.showCustomToast("Test","Description");
+                toastManager.createSystemToast("Test", "Test Description");
             }
         }, 20000L);
     }
