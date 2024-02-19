@@ -13,8 +13,10 @@ import kotlin.math.max
 
 data class VisionToast(
     var title: Text,
-    var description: Text,
-    var duration: Double = 5000.0,
+    var description: Text?,
+    var titleColor: Int = Colors.WHITE,
+    var descriptionColor: Int = Colors.WHITE,
+    var duration: Double = 500000.0,
     var texture: Identifier? = null,
     var type: ToastType? = null
 ) : Toast {
@@ -28,12 +30,23 @@ data class VisionToast(
             this.wasDisplayed = false;
             this.startTime = startTime
         }
+        context!!.drawTexture(Identifier("vision","toasts/background.png"), 32, 0, 0F, 0F,130,32,130,32)
 
-        context!!.drawTexture(Identifier("vision","toasts/background.png"), 32, 0, 0F, 0F,129,33,129,33)
-        context.drawTexture(getToastIcon(type, texture), 40, 8,0F,0F,16,16, 16,16)
+        var textStartingX = 60;
 
-        context.drawText( manager!!.client.textRenderer, this.title, 60, 7, Colors.RED, false)
-        context.drawText( manager.client.textRenderer, this.description, 60, 17, Colors.GRAY, false)
+        if(getToastIcon(type, texture) == null){
+            textStartingX = 40;
+        } else {
+            context.drawTexture(getToastIcon(type, texture), 40, 8,0F,0F,16,16, 16,16)
+        }
+
+        if(this.description?.string.isNullOrEmpty()){
+            context.drawText( manager!!.client.textRenderer, this.title, textStartingX, 13,titleColor, false)
+        } else {
+            context.drawText( manager!!.client.textRenderer, this.title, textStartingX, 7, titleColor, false)
+            context.drawText( manager!!.client.textRenderer, this.description,
+                textStartingX, 18, descriptionColor, false)
+        }
 
         val displayTime: Double = this.duration * manager.notificationDisplayTimeMultiplier
         val timeLeft = startTime - this.startTime
@@ -47,7 +60,7 @@ data class VisionToast(
     /**
      * Returns an icon for the toast based on the given type or texture
      */
-    private fun getToastIcon(type: ToastType?, texture: Identifier?): Identifier {
+    private fun getToastIcon(type: ToastType?, texture: Identifier?): Identifier? {
         if(type != null){
             return getIdentifierForType(type);
         }
@@ -61,10 +74,11 @@ data class VisionToast(
     /**
      * Returns the right identifier based on a given toasttype
      */
-    private fun getIdentifierForType(type: ToastType): Identifier {
+    private fun getIdentifierForType(type: ToastType): Identifier? {
         return when (type) {
             ToastType.INFO -> Identifier("vision","toasts/info.png")
             ToastType.ERROR -> Identifier("vision","toasts/error.png")
+            ToastType.NO_ICON -> null;
         }
     }
 }

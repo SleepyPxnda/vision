@@ -1,7 +1,5 @@
 package net.fabricmc.vision.toast
 
-import net.minecraft.client.MinecraftClient
-import net.minecraft.client.toast.SystemToast.Type
 import net.minecraft.text.Text
 import net.minecraft.util.Identifier
 
@@ -22,6 +20,18 @@ class ToastManager {
      */
     fun description(description: Text): ToastManager {
         visionToast.description = description;
+        return this;
+    }
+
+    fun title(title: Text, color: Int): ToastManager {
+        visionToast.title = title;
+        visionToast.titleColor = color;
+        return this;
+    }
+
+    fun description(description: Text, color: Int): ToastManager {
+        visionToast.description = description;
+        visionToast.descriptionColor = color;
         return this;
     }
 
